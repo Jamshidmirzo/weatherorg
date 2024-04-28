@@ -1,18 +1,24 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+import 'package:weatherorg/7days.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends SingleChildScrollView {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body: Padding(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Padding(
             padding: const EdgeInsets.all(15),
             child: Center(
               child: Container(
@@ -91,69 +97,75 @@ class MyApp extends SingleChildScrollView {
                             const SizedBox(
                               height: 50,
                             ),
-                            Row(
-                              children: [
-                                Container(
-                                  width: 168,
-                                  padding: const EdgeInsets.all(20),
-                                  decoration: BoxDecoration(
-                                      color: Colors.blue.shade500,
-                                      border: Border.all(color: Colors.white)),
-                                  child: const Column(
-                                    children: [
-                                      Center(
-                                        child: Row(
-                                          children: [
-                                            Icon(Icons.wind_power_outlined),
-                                            Text(
-                                              'Wind',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w200,
-                                                  fontSize: 18,
-                                                  color: Colors.white),
-                                            )
-                                          ],
+                            Container(
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 168,
+                                    padding: const EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                        color: Colors.blue.shade500,
+                                        border:
+                                            Border.all(color: Colors.white)),
+                                    child: const Column(
+                                      children: [
+                                        Center(
+                                          child: Row(
+                                            children: [
+                                              Icon(Icons.wind_power_outlined),
+                                              Text(
+                                                'Wind',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w200,
+                                                    fontSize: 18,
+                                                    color: Colors.white),
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        '19.2 m/c',
-                                        style: TextStyle(
-                                            fontSize: 12, color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  width: 200,
-                                  padding: const EdgeInsets.all(20),
-                                  decoration: BoxDecoration(
-                                      color: Colors.blue.shade500,
-                                      border: Border.all(color: Colors.white)),
-                                  child: const Column(
-                                    children: [
-                                      Center(
-                                        child: Row(
-                                          children: [
-                                            Icon(Icons.thermostat),
-                                            Text(
-                                              'Feeks like',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w200,
-                                                  fontSize: 18,
-                                                  color: Colors.white),
-                                            )
-                                          ],
+                                        Text(
+                                          '19.2 m/c',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.white),
                                         ),
-                                      ),
-                                      Text(
-                                        '25°',
-                                        style: TextStyle(
-                                            fontSize: 12, color: Colors.white),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                  Container(
+                                    width: 200,
+                                    padding: const EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                        color: Colors.blue.shade500,
+                                        border:
+                                            Border.all(color: Colors.white)),
+                                    child: const Column(
+                                      children: [
+                                        Center(
+                                          child: Row(
+                                            children: [
+                                              Icon(Icons.thermostat),
+                                              Text(
+                                                'Feeks like',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w200,
+                                                    fontSize: 18,
+                                                    color: Colors.white),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Text(
+                                          '25°',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                             Row(
                               children: [
@@ -188,7 +200,7 @@ class MyApp extends SingleChildScrollView {
                                     ],
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Container(
                                   width: 201,
                                   height: 68,
@@ -240,7 +252,7 @@ class MyApp extends SingleChildScrollView {
                           width: 130,
                         ),
                         Text(
-                          'Next 7 days',
+                          'Next 8 days',
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.w500),
                         ),
@@ -250,167 +262,124 @@ class MyApp extends SingleChildScrollView {
                         Icon(Icons.arrow_back_ios_new),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    Row(
-                      children: [
-                        Container(
-                          width: 60,
-                          height: 120,
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: const Column(
-                            children: [
-                              Text(
-                                '12:00',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Icon(
-                                Icons.cloud,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Text('now',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
-                            ],
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Dayss(
+                            time: '12:00',
+                            gradus: 'now',
+                            icon: Icons.sunny,
                           ),
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Container(
-                          width: 60,
-                          height: 120,
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.grey.shade400)),
-                          child: const Column(
-                            children: [
-                              Text('14:00',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Icon(
-                                Icons.cloudy_snowing,
-                                color: Colors.blue,
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Text('22°',
-                                  style: TextStyle(fontWeight: FontWeight.bold))
-                            ],
+                          const SizedBox(
+                            width: 20,
                           ),
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Container(
-                          width: 60,
-                          height: 120,
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.grey.shade400)),
-                          child: const Column(
-                            children: [
-                              Text('16:00',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Icon(
-                                Icons.cloud_off_rounded,
-                                color: Colors.blue,
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Text('22°',
-                                  style: TextStyle(fontWeight: FontWeight.bold))
-                            ],
+                          Dayss(
+                            time: '14:00',
+                            gradus: '26',
+                            icon: Icons.cloud,
                           ),
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Container(
-                          width: 60,
-                          height: 120,
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.grey.shade400)),
-                          child: const Column(
-                            children: [
-                              Text('18:00',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Icon(
-                                Icons.sunny_snowing,
-                                color: Colors.blue,
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Text('25°',
-                                  style: TextStyle(fontWeight: FontWeight.bold))
-                            ],
+                          const SizedBox(
+                            width: 20,
                           ),
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Container(
-                          width: 60,
-                          height: 120,
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.grey.shade400)),
-                          child: const Column(
-                            children: [
-                              Text('20:00',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Icon(
-                                Icons.sunny,
-                                color: Colors.blue,
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Text('31°',
-                                  style: TextStyle(fontWeight: FontWeight.bold))
-                            ],
+                          Dayss(
+                            time: '16:00',
+                            gradus: '27',
+                            icon: Icons.cloud_off_sharp,
                           ),
-                        ),
-                      ],
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Dayss(
+                            time: '18:00',
+                            gradus: '33',
+                            icon: Icons.sunny,
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Dayss(
+                            time: '20:00',
+                            gradus: '34',
+                            icon: Icons.sunny,
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Dayss(
+                            time: '12:00',
+                            gradus: 'now',
+                            icon: Icons.cloud,
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Dayss(
+                            time: '12:00',
+                            gradus: 'now',
+                            icon: Icons.cloud,
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Dayss(
+                            time: '12:00',
+                            gradus: 'now',
+                            icon: Icons.cloud,
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Dayss(
+                            time: '12:00',
+                            gradus: 'now',
+                            icon: Icons.cloud,
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Dayss(
+                            time: '12:00',
+                            gradus: 'now',
+                            icon: Icons.cloud,
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Dayss(
+                            time: '12:00',
+                            gradus: 'now',
+                            icon: Icons.cloud,
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Dayss(
+                            time: '12:00',
+                            gradus: 'now',
+                            icon: Icons.cloud,
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Dayss(
+                            time: '12:00',
+                            gradus: 'now',
+                            icon: Icons.cloud,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
